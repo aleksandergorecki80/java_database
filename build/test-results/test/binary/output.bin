@@ -1,0 +1,25 @@
+oPerson{id=101, firstName='test', lastName='ofSaving', dob=2024-01-27T07:40:34.222927800+01:00[Europe/Warsaw]}
+Records affected: 1
+1 - Deleted person
+oPerson{id=102, firstName='test', lastName='ofSaving', dob=2024-01-27T07:40:34.326860200+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-01-27T06:40:34.326860Z
+TPerson{id=103, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Records affected: 1
+RPerson{id=104, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Records affected: 1
+jPerson{id=105, firstName='John', lastName='Doe', dob=2024-01-27T07:40:34.457362500+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-01-27T06:40:34.457363Z
+2024-01-27T06:40:34.457363Z
+jPerson{id=106, firstName='John', lastName='Doe', dob=2024-01-27T07:40:34.503507600+01:00[Europe/Warsaw]}
+Records affected: 1
+kPerson{id=107, firstName='Jan', lastName='Nowak', dob=2024-01-27T07:40:34.504891200+01:00[Europe/Warsaw]}
+Records affected: 1
+2 === deletedRecordsCount
+oPerson{id=108, firstName='test', lastName='ofSaving', dob=2024-01-27T07:40:34.552893800+01:00[Europe/Warsaw]}
+Records affected: 1
+oPerson{id=109, firstName='test', lastName='ofSaving', dob=2024-01-27T07:40:34.554893800+01:00[Europe/Warsaw]}
+Records affected: 1
+	TPerson{id=110, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+	Records affected: 1
