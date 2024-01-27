@@ -22,6 +22,11 @@ public class Person implements Entity {
         this.salary = personSalary;
     }
 
+    public Person(long personId, String personFirstName, String personLastName, ZonedDateTime personDateOfBirth, BigDecimal personSalary) {
+        this(personFirstName, personLastName, personDateOfBirth, personSalary);
+        this.id = personId;
+    }
+
     public String getFirstName() {
         return firstName;
     }

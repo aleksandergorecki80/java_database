@@ -20,7 +20,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
-    String getSaveSQL() {
+    protected String getSaveSQL() {
         return SAVE_PERSON_SQL;
     }
 
@@ -31,33 +31,52 @@ public class PeopleRepository extends CRUDRepository<Person> {
         preparedStatement.setTimestamp(3, convertDateOfBirthToTimestamp(entity.getDob()));
     }
 
-    public Optional<Person> findPersonById(Long id) {
-        Person person = null;
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL);
-            preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                long personId = resultSet.getLong("ID");
-                String personFirstName = resultSet.getString("FIRST_NAME");
-                String personLastName = resultSet.getString("LAST_NAME");
-                ZonedDateTime personDateOfBirth = ZonedDateTime.of(resultSet.getTimestamp("DOB").toLocalDateTime(), ZoneId.of("+0"));
-                BigDecimal personSalary = resultSet.getBigDecimal("SALARY");
-                System.out.println(personDateOfBirth);
-
-                person = new Person(personFirstName, personLastName, personDateOfBirth, personSalary);
-                person.setId(personId);
-            }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new UnableToSaveException("Nothing has been found. Try again later");
-        }
-        return Optional.ofNullable(person);
+    @Override
+    Person extractEntityFromResultSet(ResultSet resultSet) throws SQLException{
+        long personId = resultSet.getLong("ID");
+        String personFirstName = resultSet.getString("FIRST_NAME");
+        String personLastName = resultSet.getString("LAST_NAME");
+        ZonedDateTime personDateOfBirth = ZonedDateTime.of(resultSet.getTimestamp("DOB").toLocalDateTime(), ZoneId.of("+0"));
+        BigDecimal personSalary = resultSet.getBigDecimal("SALARY");
+        System.out.println(personDateOfBirth);
+        return new Person(personId, personFirstName, personLastName, personDateOfBirth, personSalary);
     }
+
+    @Override
+    protected String getFindByIdSQL() {
+        return FIND_BY_ID_SQL;
+    }
+
+//    public Optional<Person> findPersonById(Long id) {
+//        Person person = null;
+//
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL);
+//            preparedStatement.setLong(1, id);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                person = extractEntityFromResultSet(resultSet);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new UnableToSaveException("Nothing has been found. Try again later");
+//        }
+//        return Optional.ofNullable(person);
+//    }
+
+//    private static Person extractPersonFromResultSet(ResultSet resultSet) throws SQLException {
+//        Person person;
+//        long personId = resultSet.getLong("ID");
+//        String personFirstName = resultSet.getString("FIRST_NAME");
+//        String personLastName = resultSet.getString("LAST_NAME");
+//        ZonedDateTime personDateOfBirth = ZonedDateTime.of(resultSet.getTimestamp("DOB").toLocalDateTime(), ZoneId.of("+0"));
+//        BigDecimal personSalary = resultSet.getBigDecimal("SALARY");
+//        System.out.println(personDateOfBirth);
+//
+//        person = new Person(personFirstName, personLastName, personDateOfBirth, personSalary);
+//        person.setId(personId);
+//        return person;
+//    }
 
     public long count(){
         long count = 0;
