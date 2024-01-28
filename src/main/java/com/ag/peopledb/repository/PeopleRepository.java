@@ -1,5 +1,6 @@
 package com.ag.peopledb.repository;
 
+import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.exeption.UnableToSaveException;
 import com.ag.peopledb.model.Person;
 
@@ -25,6 +26,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
+    @SQL(value = SAVE_PERSON_SQL)
     void mapForSave(Person entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
@@ -43,6 +45,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
+    @SQL(UPDATE_SQL)
     void mapForUpdate(Person entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
@@ -79,15 +82,12 @@ public class PeopleRepository extends CRUDRepository<Person> {
         return DELETE_BY_ID_IN_SQL;
     }
 
-    @Override
-    protected String getUpdateSQL() {
-        return UPDATE_SQL;
-    }
+//    @Override
+//    protected String getUpdateSQL() {
+//        return UPDATE_SQL;
+//    }
 
-    @Override
-    protected String getSaveSQL() {
-        return SAVE_PERSON_SQL;
-    }
+
 }
 
 // DELETING A GROUP OF PEOPLE IN A LOOP

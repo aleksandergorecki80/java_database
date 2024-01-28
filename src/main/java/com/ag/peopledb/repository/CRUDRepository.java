@@ -1,14 +1,15 @@
 package com.ag.peopledb.repository;
 
+import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.exeption.UnableToSaveException;
 import com.ag.peopledb.model.Entity;
-import com.ag.peopledb.model.Person;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import static java.util.stream.Collectors.joining;
 
@@ -20,9 +21,18 @@ abstract class CRUDRepository<T extends Entity> {
         this.connection = connection;
     }
 
+
+    private String getSQLByAnnotation(String methodName, Supplier<String> sqlGetter){
+     return Arrays.stream(this.getClass().getDeclaredMethods())
+              .filter(m -> methodName.contentEquals(m.getName()))
+              .map(m -> m.getAnnotation(SQL.class))
+              .map(SQL::value)
+              .findFirst().orElseGet(sqlGetter);
+    };
+
     public T save(T entity) throws UnableToSaveException {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getSaveSQL(), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation("mapForSave", this::getSaveSQL), Statement.RETURN_GENERATED_KEYS);
 
             mapForSave(entity, preparedStatement);
             int update = preparedStatement.executeUpdate();
@@ -114,7 +124,7 @@ abstract class CRUDRepository<T extends Entity> {
 
     public void update(T entity) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getUpdateSQL());
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation("mapForUpdate", this::getUpdateSQL));
             mapForUpdate(entity, preparedStatement);
             preparedStatement.setLong(5, entity.getId());
             preparedStatement.executeUpdate();
@@ -124,7 +134,7 @@ abstract class CRUDRepository<T extends Entity> {
         }
     }
 
-    protected abstract String getUpdateSQL();
+
 
 
     abstract T extractEntityFromResultSet(ResultSet resultSet) throws SQLException;
@@ -157,7 +167,14 @@ abstract class CRUDRepository<T extends Entity> {
 
     protected abstract String getFindByIdSQL();
 
-    protected abstract String getSaveSQL();
+    String getSaveSQL(){
+          return "";
+      };
+
+    String getUpdateSQL(){
+        return "";
+    };
+
     protected abstract String getDeleteSQL();
 
 
