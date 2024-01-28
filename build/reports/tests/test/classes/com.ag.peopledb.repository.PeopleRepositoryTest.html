@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">8</div>
+<div class="counter">9</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.932s</div>
+<div class="counter">0.980s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,42 +79,47 @@
 </thead>
 <tr>
 <td class="success">canDelete()</td>
-<td class="success">0.075s</td>
+<td class="success">0.134s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canDeleteMultiplePeople()</td>
-<td class="success">0.040s</td>
+<td class="success">0.042s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">canFindPersonById()</td>
-<td class="success">0.052s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">canGetCount()</td>
-<td class="success">0.031s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">canSaveOnePerson()</td>
-<td class="success">0.030s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">canSaveTwoPeople()</td>
-<td class="success">0.038s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">canUpdate()</td>
+<td class="success">canFindAll()</td>
 <td class="success">0.041s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">canFindPersonById()</td>
+<td class="success">0.045s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canGetCount()</td>
+<td class="success">0.036s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canSaveOnePerson()</td>
+<td class="success">0.042s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canSaveTwoPeople()</td>
+<td class="success">0.044s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canUpdate()</td>
+<td class="success">0.048s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testPersonIdNotFound()</td>
-<td class="success">0.625s</td>
+<td class="success">0.548s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -122,31 +127,50 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>Person{id=121, firstName='test', lastName='ofSaving', dob=2024-01-27T08:46:07.570439900+01:00[Europe/Warsaw]}
+<pre>Person{id=181, firstName='test', lastName='ofSaving', dob=2024-01-28T07:47:32.446792300+01:00[Europe/Warsaw]}
 Records affected: 1
-1 - Deleted person
-Person{id=122, firstName='test', lastName='ofSaving', dob=2024-01-27T08:46:07.648076100+01:00[Europe/Warsaw]}
+1 - Deleted entity
+Person{id=182, firstName='test', lastName='ofSaving', dob=2024-01-28T07:47:32.560049100+01:00[Europe/Warsaw]}
 Records affected: 1
-2024-01-27T07:46:07.648076Z
-Person{id=123, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+2024-01-28T06:47:32.560049Z
+Person{id=183, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-Person{id=124, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Person{id=184, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
 Records affected: 1
-Person{id=125, firstName='John', lastName='Doe', dob=2024-01-27T08:46:07.733158400+01:00[Europe/Warsaw]}
+Person{id=185, firstName='John', lastName='Doe', dob=2024-01-28T07:47:32.654679100+01:00[Europe/Warsaw]}
 Records affected: 1
-2024-01-27T07:46:07.733158Z
-2024-01-27T07:46:07.733158Z
-Person{id=126, firstName='John', lastName='Doe', dob=2024-01-27T08:46:07.777001400+01:00[Europe/Warsaw]}
+2024-01-28T06:47:32.654679Z
+2024-01-28T06:47:32.654679Z
+Person{id=186, firstName='John', lastName='Doe', dob=2024-01-28T07:47:32.700735100+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=127, firstName='Jan', lastName='Nowak', dob=2024-01-27T08:46:07.779006900+01:00[Europe/Warsaw]}
+Person{id=187, firstName='Jan', lastName='Nowak', dob=2024-01-28T07:47:32.701763300+01:00[Europe/Warsaw]}
 Records affected: 1
 2 === deletedRecordsCount
-Person{id=128, firstName='test', lastName='ofSaving', dob=2024-01-27T08:46:07.813757300+01:00[Europe/Warsaw]}
+Person{id=188, firstName='test', lastName='ofSaving', dob=2024-01-28T07:47:32.747509700+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=129, firstName='test', lastName='ofSaving', dob=2024-01-27T08:46:07.815627900+01:00[Europe/Warsaw]}
+Person{id=189, firstName='test', lastName='ofSaving', dob=2024-01-28T07:47:32.749014200+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=130, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Person{id=190, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
+2001-12-31T23:59:59Z
+2001-12-31T23:59:59Z
+1991-01-14T23:59:59Z
+1995-12-31T23:59:59Z
+1975-12-31T23:59:59Z
+1990-02-02T23:59:59Z
+1995-07-21T12:55:59Z
+1987-09-21T12:55:59Z
+1987-09-21T12:55:59Z
+1980-11-02T04:05:10Z
+1980-11-02T04:05:10Z
+1980-11-02T04:05:10Z
+1985-05-03T21:05:10Z
+1980-11-02T04:05:10Z
+1985-05-03T21:05:10Z
+1980-11-02T04:05:10Z
+1980-11-02T04:05:10Z
+1985-05-03T21:05:10Z
+1980-11-02T04:05:10Z
 </pre>
 </span>
 </div>
@@ -158,7 +182,7 @@ Records affected: 1
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at 27 Jan 2024, 08:46:07</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 28 Jan 2024, 07:47:33</p>
 </div>
 </div>
 </body>

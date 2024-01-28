@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -107,6 +108,13 @@ public class PeopleRepositoryTest {
 //        assertThat(foundPerson.getSalary()).isEqualTo("0");
 //        assertThat(updatedPerson.getSalary()).isEqualTo(salary);
         assertThat(updatedPerson.getSalary()).isNotEqualTo(foundPerson.getSalary());
+    }
+
+    @Test
+    public void canFindAll(){
+        long count = repo.count();
+        List<Person> all = repo.findAll();
+        assertThat(all.size()).isEqualTo(count);
     }
 
 }
