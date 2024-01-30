@@ -168,14 +168,14 @@ abstract class CRUDRepository<T extends Entity> {
 
     protected String getFindAllSQL(){ return "";};
 
-    protected abstract String getFindByIdSQL();
+    protected String getFindByIdSQL(){ return "";};
 
 
-    String getSaveSQL(){
+    protected String getSaveSQL(){
           return "";
       };
 
-    String getUpdateSQL(){
+    protected String getUpdateSQL(){
         return "";
     };
 
