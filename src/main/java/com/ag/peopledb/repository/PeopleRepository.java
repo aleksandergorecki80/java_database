@@ -2,6 +2,7 @@ package com.ag.peopledb.repository;
 
 import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.exeption.UnableToSaveException;
+import com.ag.peopledb.model.CrudOperation;
 import com.ag.peopledb.model.Person;
 
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
-    @SQL(value = SAVE_PERSON_SQL)
+    @SQL(value = SAVE_PERSON_SQL, operationType = CrudOperation.SAVE)
     void mapForSave(Person entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
@@ -45,7 +46,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
-    @SQL(UPDATE_SQL)
+    @SQL(value = UPDATE_SQL, operationType = CrudOperation.UPDATE)
     void mapForUpdate(Person entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
