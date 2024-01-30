@@ -56,7 +56,7 @@ abstract class CRUDRepository<T extends Entity> {
         T entity = null;
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getFindByIdSQL());
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.FIND_BY_ID, this::getFindByIdSQL));
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -72,7 +72,7 @@ abstract class CRUDRepository<T extends Entity> {
     public List<T> findAll(){
         List<T> entities = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getFindAllSQL());
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.FIND_ALL, this::getFindAllSQL));
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 entities.add(extractEntityFromResultSet(resultSet));
@@ -102,7 +102,7 @@ abstract class CRUDRepository<T extends Entity> {
 
     public void delete(T entity) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getDeleteSQL());
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.DELETE_ONE, this::getDeleteSQL));
             preparedStatement.setLong(1, entity.getId());
             int result = preparedStatement.executeUpdate();
             System.out.println(result + " - Deleted entity");
@@ -116,7 +116,7 @@ abstract class CRUDRepository<T extends Entity> {
         try {
             String ids = Arrays.stream(entities).map(T::getId).map(String::valueOf).collect(joining(","));
             Statement statement = connection.createStatement();
-            int deletedRecordsCount = statement.executeUpdate(getDeleteInSQL().replace(":ids", ids));
+            int deletedRecordsCount = statement.executeUpdate(getSQLByAnnotation(CrudOperation.DELETE_MANY, this::getDeleteInSQL).replace(":ids", ids));
             System.out.println(deletedRecordsCount + " === deletedRecordsCount");
         } catch (SQLException e) {
             e.printStackTrace();
