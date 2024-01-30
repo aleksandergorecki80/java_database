@@ -2,6 +2,7 @@ package com.ag.peopledb.repository;
 
 import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.exeption.UnableToSaveException;
+import com.ag.peopledb.model.CrudOperation;
 import com.ag.peopledb.model.Entity;
 
 import java.sql.*;
@@ -22,17 +23,18 @@ abstract class CRUDRepository<T extends Entity> {
     }
 
 
-    private String getSQLByAnnotation(String methodName, Supplier<String> sqlGetter){
+    private String getSQLByAnnotation(CrudOperation operationType, Supplier<String> sqlGetter){
      return Arrays.stream(this.getClass().getDeclaredMethods())
-              .filter(m -> methodName.contentEquals(m.getName()))
+              .filter(m -> m.isAnnotationPresent(SQL.class))
               .map(m -> m.getAnnotation(SQL.class))
+              .filter(annotation -> annotation.operationType().equals(operationType))
               .map(SQL::value)
               .findFirst().orElseGet(sqlGetter);
     };
 
     public T save(T entity) throws UnableToSaveException {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation("mapForSave", this::getSaveSQL), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.SAVE, this::getSaveSQL), Statement.RETURN_GENERATED_KEYS);
 
             mapForSave(entity, preparedStatement);
             int update = preparedStatement.executeUpdate();
@@ -124,7 +126,7 @@ abstract class CRUDRepository<T extends Entity> {
 
     public void update(T entity) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation("mapForUpdate", this::getUpdateSQL));
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.UPDATE, this::getUpdateSQL));
             mapForUpdate(entity, preparedStatement);
             preparedStatement.setLong(5, entity.getId());
             preparedStatement.executeUpdate();
