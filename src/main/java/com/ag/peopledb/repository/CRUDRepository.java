@@ -157,17 +157,19 @@ abstract class CRUDRepository<T extends Entity> {
 //        preparedStatement.setBigDecimal(4, entity.getSalary());
 //    }
     
-    protected abstract String getDeleteInSQL();
+    protected String getDeleteInSQL(){ return "";};
 
     /**
      * should return a string like "DELETE FROM PEOPLE WHERE ID IN (:ids)"
      */
+    protected String getDeleteSQL(){ return "";};
 
-    protected abstract String getCountSQL();
+    protected String getCountSQL(){ return "";};
 
-    protected abstract String getFindAllSQL();
+    protected String getFindAllSQL(){ return "";};
 
     protected abstract String getFindByIdSQL();
+
 
     String getSaveSQL(){
           return "";
@@ -177,7 +179,6 @@ abstract class CRUDRepository<T extends Entity> {
         return "";
     };
 
-    protected abstract String getDeleteSQL();
 
 
 }
