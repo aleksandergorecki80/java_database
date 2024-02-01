@@ -160,13 +160,7 @@ abstract class CRUDRepository<T extends Entity> {
     abstract void mapForSave(T entity, PreparedStatement preparedStatement) throws SQLException;
 
     abstract void mapForUpdate(T entity, PreparedStatement preparedStatement) throws SQLException;
-//    {
-//        preparedStatement.setString(1, entity.getFirstName());
-//        preparedStatement.setString(2, entity.getLastName());
-//        preparedStatement.setTimestamp(3, convertDateOfBirthToTimestamp(entity.getDob()));
-//        preparedStatement.setBigDecimal(4, entity.getSalary());
-//    }
-    
+
     protected String getDeleteInSQL(){ throw new RuntimeException("SQL Not defined.");};
 
     /**

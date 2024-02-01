@@ -89,8 +89,11 @@ public class PeopleRepositoryTest {
     public void canDeleteMultiplePeople(){
         Person person = repo.save(new Person("John", "Doe", ZonedDateTime.now()));
         Person person1 = repo.save(new Person("Jan", "Nowak", ZonedDateTime.now()));
+        long startCount = repo.count();
 
         repo.delete(person, person1);
+        long endCount = repo.count();
+        assertThat(endCount).isEqualTo(startCount -2);
     }
 
     @Test

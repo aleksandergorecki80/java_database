@@ -62,38 +62,6 @@ public class PeopleRepository extends CRUDRepository<Person> {
     private static Timestamp convertDateOfBirthToTimestamp(ZonedDateTime dateOfBirth) {
         return Timestamp.valueOf(dateOfBirth.withZoneSameInstant(ZoneId.of("+0")).toLocalDateTime());
     }
-
-//    @Override
-//    protected String getFindByIdSQL() {
-//        return FIND_BY_ID_SQL;
-//    }
-//
-//    @Override
-//    protected String getFindAllSQL() {
-//        return FIND_ALL_SQL;
-//    }
-//
-//    @Override
-//    protected String getCountSQL() {
-//        return SELECT_COUNT_SQL;
-//    }
-//
-//    @Override
-//    protected String getDeleteSQL() {
-//        return DELETE_BY_ID_SQL;
-//    }
-//
-//    @Override
-//    protected String getDeleteInSQL() {
-//        return DELETE_BY_ID_IN_SQL;
-//    }
-
-//    @Override
-//    protected String getUpdateSQL() {
-//        return UPDATE_SQL;
-//    }
-
-
 }
 
 // DELETING A GROUP OF PEOPLE IN A LOOP
