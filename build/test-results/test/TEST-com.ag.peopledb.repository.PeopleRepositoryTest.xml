@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ag.peopledb.repository.PeopleRepositoryTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-01-30T21:33:39" hostname="LAPTOP-IS8B2KI2" time="0.906">
+<testsuite name="com.ag.peopledb.repository.PeopleRepositoryTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-02-01T18:17:07" hostname="LAPTOP-IS8B2KI2" time="1.12">
   <properties/>
-  <testcase name="testPersonIdNotFound()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.509"/>
-  <testcase name="canDelete()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.106"/>
-  <testcase name="canFindPersonById()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.036"/>
-  <testcase name="canSaveTwoPeople()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.04"/>
-  <testcase name="canUpdate()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.047"/>
-  <testcase name="canDeleteMultiplePeople()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.039"/>
-  <testcase name="canGetCount()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.037"/>
-  <testcase name="canSaveOnePerson()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.033"/>
-  <testcase name="canFindAll()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.041"/>
-  <system-out><![CDATA[Person{id=339, firstName='test', lastName='ofSaving', dob=2024-01-30T22:33:40.099043200+01:00[Europe/Warsaw]}
+  <testcase name="testPersonIdNotFound()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.627"/>
+  <testcase name="canDelete()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.127"/>
+  <testcase name="canFindPersonById()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.049"/>
+  <testcase name="canSaveTwoPeople()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.054"/>
+  <testcase name="canUpdate()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.062"/>
+  <testcase name="canDeleteMultiplePeople()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.054"/>
+  <testcase name="canGetCount()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.041"/>
+  <testcase name="canSaveOnePerson()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.044"/>
+  <testcase name="canFindAll()" classname="com.ag.peopledb.repository.PeopleRepositoryTest" time="0.042"/>
+  <system-out><![CDATA[Person{id=349, firstName='test', lastName='ofSaving', dob=2024-02-01T19:17:08.518598400+01:00[Europe/Warsaw]}
 Records affected: 1
 1 - Deleted entity
-Person{id=340, firstName='test', lastName='ofSaving', dob=2024-01-30T22:33:40.193961300+01:00[Europe/Warsaw]}
+Person{id=350, firstName='test', lastName='ofSaving', dob=2024-02-01T19:17:08.637084600+01:00[Europe/Warsaw]}
 Records affected: 1
-2024-01-30T21:33:40.193961Z
-Person{id=341, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+2024-02-01T18:17:08.637085Z
+Person{id=351, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-Person{id=342, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Person{id=352, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
 Records affected: 1
-Person{id=343, firstName='John', lastName='Doe', dob=2024-01-30T22:33:40.279771100+01:00[Europe/Warsaw]}
+Person{id=353, firstName='John', lastName='Doe', dob=2024-02-01T19:17:08.741616900+01:00[Europe/Warsaw]}
 Records affected: 1
-2024-01-30T21:33:40.279771Z
-2024-01-30T21:33:40.279771Z
-Person{id=344, firstName='John', lastName='Doe', dob=2024-01-30T22:33:40.326515800+01:00[Europe/Warsaw]}
+2024-02-01T18:17:08.741617Z
+2024-02-01T18:17:08.741617Z
+Person{id=354, firstName='John', lastName='Doe', dob=2024-02-01T19:17:08.813199200+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=345, firstName='Jan', lastName='Nowak', dob=2024-01-30T22:33:40.328977200+01:00[Europe/Warsaw]}
+Person{id=355, firstName='Jan', lastName='Nowak', dob=2024-02-01T19:17:08.816475800+01:00[Europe/Warsaw]}
 Records affected: 1
 2 === deletedRecordsCount
-Person{id=346, firstName='test', lastName='ofSaving', dob=2024-01-30T22:33:40.370472600+01:00[Europe/Warsaw]}
+Person{id=356, firstName='test', lastName='ofSaving', dob=2024-02-01T19:17:08.863505+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=347, firstName='test', lastName='ofSaving', dob=2024-01-30T22:33:40.372472500+01:00[Europe/Warsaw]}
+Person{id=357, firstName='test', lastName='ofSaving', dob=2024-02-01T19:17:08.864755600+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=348, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Person{id=358, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
 2001-12-31T23:59:59Z
 2001-12-31T23:59:59Z

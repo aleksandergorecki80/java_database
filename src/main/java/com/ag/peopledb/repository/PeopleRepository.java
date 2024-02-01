@@ -36,6 +36,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
 
     @Override
     @SQL(value = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?", operationType = CrudOperation.FIND_BY_ID)
+    @SQL(value = FIND_ALL_SQL, operationType = CrudOperation.FIND_ALL)
     Person extractEntityFromResultSet(ResultSet resultSet) throws SQLException{
         long personId = resultSet.getLong("ID");
         String personFirstName = resultSet.getString("FIRST_NAME");
