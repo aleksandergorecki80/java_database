@@ -37,6 +37,9 @@ public class PeopleRepository extends CRUDRepository<Person> {
     @Override
     @SQL(value = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?", operationType = CrudOperation.FIND_BY_ID)
     @SQL(value = FIND_ALL_SQL, operationType = CrudOperation.FIND_ALL)
+    @SQL(value = SELECT_COUNT_SQL, operationType = CrudOperation.COUNT)
+    @SQL(value = DELETE_BY_ID_SQL, operationType = CrudOperation.DELETE_ONE)
+    @SQL(value = DELETE_BY_ID_IN_SQL, operationType = CrudOperation.DELETE_MANY)
     Person extractEntityFromResultSet(ResultSet resultSet) throws SQLException{
         long personId = resultSet.getLong("ID");
         String personFirstName = resultSet.getString("FIRST_NAME");
@@ -60,30 +63,30 @@ public class PeopleRepository extends CRUDRepository<Person> {
         return Timestamp.valueOf(dateOfBirth.withZoneSameInstant(ZoneId.of("+0")).toLocalDateTime());
     }
 
-    @Override
-    protected String getFindByIdSQL() {
-        return FIND_BY_ID_SQL;
-    }
-
-    @Override
-    protected String getFindAllSQL() {
-        return FIND_ALL_SQL;
-    }
-
-    @Override
-    protected String getCountSQL() {
-        return SELECT_COUNT_SQL;
-    }
-
-    @Override
-    protected String getDeleteSQL() {
-        return DELETE_BY_ID_SQL;
-    }
-
-    @Override
-    protected String getDeleteInSQL() {
-        return DELETE_BY_ID_IN_SQL;
-    }
+//    @Override
+//    protected String getFindByIdSQL() {
+//        return FIND_BY_ID_SQL;
+//    }
+//
+//    @Override
+//    protected String getFindAllSQL() {
+//        return FIND_ALL_SQL;
+//    }
+//
+//    @Override
+//    protected String getCountSQL() {
+//        return SELECT_COUNT_SQL;
+//    }
+//
+//    @Override
+//    protected String getDeleteSQL() {
+//        return DELETE_BY_ID_SQL;
+//    }
+//
+//    @Override
+//    protected String getDeleteInSQL() {
+//        return DELETE_BY_ID_IN_SQL;
+//    }
 
 //    @Override
 //    protected String getUpdateSQL() {

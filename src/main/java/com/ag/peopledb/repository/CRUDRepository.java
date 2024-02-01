@@ -98,7 +98,7 @@ abstract class CRUDRepository<T extends Entity> {
     public long count(){
         long count = 0;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getCountSQL());
+            PreparedStatement preparedStatement = connection.prepareStatement(getSQLByAnnotation(CrudOperation.COUNT, this::getCountSQL));
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 count = resultSet.getLong(1);
@@ -167,16 +167,16 @@ abstract class CRUDRepository<T extends Entity> {
 //        preparedStatement.setBigDecimal(4, entity.getSalary());
 //    }
     
-    protected String getDeleteInSQL(){ return "";};
+    protected String getDeleteInSQL(){ throw new RuntimeException("SQL Not defined.");};
 
     /**
      * should return a string like "DELETE FROM PEOPLE WHERE ID IN (:ids)"
      */
-    protected String getDeleteSQL(){ return "";};
+    protected String getDeleteSQL(){ throw new RuntimeException("SQL Not defined.");};
 
-    protected String getCountSQL(){ return "";};
+    protected String getCountSQL(){ throw new RuntimeException("SQL Not defined.");};
 
-    protected String getFindAllSQL(){ return "";};
+    protected String getFindAllSQL(){ throw new RuntimeException("SQL Not defined.");};
 
     protected String getFindByIdSQL(){ return "";};
 
