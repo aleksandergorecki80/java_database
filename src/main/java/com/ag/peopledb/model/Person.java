@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-public class Person implements Entity {
+public class Person {
     @Id
     private Long id;
 
@@ -43,12 +43,10 @@ public class Person implements Entity {
         return dob;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
