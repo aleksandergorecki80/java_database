@@ -1,11 +1,15 @@
 package com.ag.peopledb.model;
 
+import com.ag.peopledb.anotation.Id;
+
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public class Person implements Entity {
+    @Id
     private Long id;
+
     private String firstName;
     private String lastName;
     private  ZonedDateTime dob;

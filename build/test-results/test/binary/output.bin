@@ -1,5 +1,63 @@
-jPerson{id=415, firstName='John', lastName='Doe', dob=2024-02-01T22:49:40.225555600+01:00[Europe/Warsaw]}
-Records affected: 1
-kPerson{id=416, firstName='Jan', lastName='Nowak', dob=2024-02-01T22:49:40.253465800+01:00[Europe/Warsaw]}
-Records affected: 1
-2 === deletedRecordsCount
+oPerson{id=457, firstName='test', lastName='ofSaving', dob=2024-02-06T22:36:09.163912100+01:00[Europe/Warsaw]}
+Records affected: 1
+1 - Deleted entity
+oPerson{id=458, firstName='test', lastName='ofSaving', dob=2024-02-06T22:36:09.262050600+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-02-06T21:36:09.262051Z
+TPerson{id=459, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Records affected: 1
+RPerson{id=460, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Records affected: 1
+gPerson{id=461, firstName='John', lastName='Doe', dob=2024-02-06T22:36:09.348842+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-02-06T21:36:09.348842Z
+2024-02-06T21:36:09.348842Z
+jPerson{id=462, firstName='John', lastName='Doe', dob=2024-02-06T22:36:09.393854400+01:00[Europe/Warsaw]}
+Records affected: 1
+kPerson{id=463, firstName='Jan', lastName='Nowak', dob=2024-02-06T22:36:09.394886900+01:00[Europe/Warsaw]}
+Records affected: 1
+2 === deletedRecordsCount
+lPerson{id=464, firstName='test', lastName='ofSaving', dob=2024-02-06T22:36:09.439431+01:00[Europe/Warsaw]}
+Records affected: 1
+oPerson{id=465, firstName='test', lastName='ofSaving', dob=2024-02-06T22:36:09.441431800+01:00[Europe/Warsaw]}
+Records affected: 1
+	TPerson{id=466, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+	Records affected: 1
+
+2001-12-31T23:59:59Z
+
+2001-12-31T23:59:59Z
+
+1991-01-14T23:59:59Z
+
+1995-12-31T23:59:59Z
+
+1975-12-31T23:59:59Z
+
+1990-02-02T23:59:59Z
+
+1995-07-21T12:55:59Z
+
+1987-09-21T12:55:59Z
+
+1987-09-21T12:55:59Z
+
+1980-11-02T04:05:10Z
+
+1980-11-02T04:05:10Z
+
+1980-11-02T04:05:10Z
+
+1985-05-03T21:05:10Z
+
+1980-11-02T04:05:10Z
+
+1985-05-03T21:05:10Z
+
+1980-11-02T04:05:10Z
+
+1980-11-02T04:05:10Z
+
+1985-05-03T21:05:10Z
+
+1980-11-02T04:05:10Z
