@@ -5,13 +5,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -111,6 +116,31 @@ public class PeopleRepositoryTest {
 //        assertThat(foundPerson.getSalary()).isEqualTo("0");
 //        assertThat(updatedPerson.getSalary()).isEqualTo(salary);
         assertThat(updatedPerson.getSalary()).isNotEqualTo(foundPerson.getSalary());
+    }
+
+    @Test public void loadData() throws IOException, SQLException {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .appendPattern("h:mm:ss a")
+                .toFormatter(Locale.US);
+
+        Files.lines(Path.of("C:/Users/justy/Desktop/JAVA/UDEMY__Java_Foundations/Hr5m.csv"))
+                .skip(1)
+                .limit(5)
+                .map(l -> l.split(","))
+                .map(a -> {
+                    LocalDate dob = LocalDate.parse(a[10], dateFormatter);
+                    LocalTime tob = LocalTime.parse(a[11], timeFormatter);
+                    LocalDateTime dtob = LocalDateTime.of(dob, tob);
+                    ZonedDateTime zdtob = ZonedDateTime.of(dtob, ZoneId.of("+0"));
+                    Person person = new Person(a[2], a[4], zdtob);
+                    person.setSalary(new BigDecimal(a[25]));
+                    person.setEmail(a[6]);
+                    return person;
+                })
+                .forEach(repo::save);
+        connection.commit();
     }
 
     @Test

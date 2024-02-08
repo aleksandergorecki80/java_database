@@ -14,7 +14,10 @@ import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 public class PeopleRepository extends CRUDRepository<Person> {
-    public static final String SAVE_PERSON_SQL = "INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB) VALUES(?, ?, ?) ";
+    public static final String SAVE_PERSON_SQL = """
+            INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB, SALARY, EMAIL) 
+            VALUES(?, ?, ?, ?, ?) 
+            """;
     public static final String FIND_BY_ID_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?";
     public static final String FIND_ALL_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE";
     public static final String SELECT_COUNT_SQL = "SELECT COUNT(*) FROM PEOPLE";
@@ -32,6 +35,8 @@ public class PeopleRepository extends CRUDRepository<Person> {
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
         preparedStatement.setTimestamp(3, convertDateOfBirthToTimestamp(entity.getDob()));
+        preparedStatement.setBigDecimal(4, entity.getSalary());
+        preparedStatement.setString(5, entity.getEmail());
     }
 
     @Override
