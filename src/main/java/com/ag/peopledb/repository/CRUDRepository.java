@@ -62,7 +62,7 @@ abstract class CRUDRepository<T> {
         return entity;
     }
 
-    public Optional<T> findPersonById(Long id) {
+    public Optional<T> findById(Long id) {
         T entity = null;
 
         try {

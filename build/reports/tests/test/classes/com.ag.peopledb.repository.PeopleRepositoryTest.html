@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">11</div>
+<div class="counter">12</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">39.591s</div>
+<div class="counter">27.829s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">canDelete()</td>
-<td class="success">16.612s</td>
+<td class="success">10.842s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canDeleteMultiplePeople()</td>
-<td class="success">15.146s</td>
+<td class="success">10.965s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -94,32 +94,37 @@
 </tr>
 <tr>
 <td class="success">canFindPersonById()</td>
-<td class="success">0.067s</td>
+<td class="success">0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canFindPersonByIdWithAddress()</td>
+<td class="success">0.056s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canGetCount()</td>
-<td class="success">6.849s</td>
+<td class="success">5.406s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canSaveOnePerson()</td>
-<td class="success">0.037s</td>
+<td class="success">0.029s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canSavePersonWithAddress()</td>
-<td class="success">0.088s</td>
+<td class="success">0.041s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canSaveTwoPeople()</td>
-<td class="success">0.089s</td>
+<td class="success">0.027s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">canUpdate()</td>
-<td class="success">0.077s</td>
+<td class="success">0.032s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -129,7 +134,7 @@
 </tr>
 <tr>
 <td class="success">testPersonIdNotFound()</td>
-<td class="success">0.624s</td>
+<td class="success">0.402s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -137,34 +142,35 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>Person{id=5000492, firstName='test', lastName='ofSaving', dob=2024-02-11T14:50:55.682030800+01:00[Europe/Warsaw]}
+<pre>Person{id=5000504, firstName='test', lastName='ofSaving', dob=2024-02-11T21:25:58.479839400+01:00[Europe/Warsaw]}
 Records affected: 1
 1 - Deleted entity
-Person{id=5000493, firstName='test', lastName='ofSaving', dob=2024-02-11T14:51:12.286752300+01:00[Europe/Warsaw]}
+Address[id=16, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
 Records affected: 1
-2024-02-11T13:51:12.286752Z
-Person{id=5000494, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Person{id=5000505, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-Person{id=5000495, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Person{id=5000506, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:09.375543+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=5000496, firstName='John', lastName='Doe', dob=2024-02-11T14:51:12.454999800+01:00[Europe/Warsaw]}
+Person{id=5000507, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-2024-02-11T13:51:12.455Z
-2024-02-11T13:51:12.455Z
-Person{id=5000497, firstName='John', lastName='Doe', dob=2024-02-11T14:51:12.526198700+01:00[Europe/Warsaw]}
+Person{id=5000508, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
 Records affected: 1
-Person{id=5000498, firstName='Jan', lastName='Nowak', dob=2024-02-11T14:51:12.529201600+01:00[Europe/Warsaw]}
+Person{id=5000509, firstName='John', lastName='Doe', dob=2024-02-11T21:26:09.432507200+01:00[Europe/Warsaw]}
+Records affected: 1
+Person{id=5000510, firstName='John', lastName='Doe', dob=2024-02-11T21:26:09.466593300+01:00[Europe/Warsaw]}
+Records affected: 1
+Person{id=5000511, firstName='Jan', lastName='Nowak', dob=2024-02-11T21:26:09.468807400+01:00[Europe/Warsaw]}
 Records affected: 1
 2 === deletedRecordsCount
-Address[id=14, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
+Address[id=17, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
 Records affected: 1
-Person{id=5000499, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
+Person{id=5000512, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-Person{id=5000500, firstName='test', lastName='ofSaving', dob=2024-02-11T14:51:27.761778300+01:00[Europe/Warsaw]}
+Person{id=5000513, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:20.475475500+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=5000501, firstName='test', lastName='ofSaving', dob=2024-02-11T14:51:27.764955700+01:00[Europe/Warsaw]}
+Person{id=5000514, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:20.477054500+01:00[Europe/Warsaw]}
 Records affected: 1
-Person{id=5000502, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Person{id=5000515, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
 </pre>
 </span>
@@ -177,7 +183,7 @@ Records affected: 1
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at 11 Feb 2024, 14:51:34</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 11 Feb 2024, 21:26:26</p>
 </div>
 </div>
 </body>

@@ -3,6 +3,7 @@ package com.ag.peopledb.repository;
 import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.model.Address;
 import com.ag.peopledb.model.CrudOperation;
+import com.ag.peopledb.model.Region;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,8 +17,25 @@ public class AddressRepository extends CRUDRepository<Address> {
     }
 
     @Override
+    @SQL(operationType = CrudOperation.FIND_BY_ID, value = """
+            SELECT ID, STREET_ADDRESS, ADDRESS2, CITY, STATE, POSTCODE, COUNTY, REGION, COUNTRY
+            FROM ADDRESSES
+            WHERE ID = ?
+            """)
     Address extractEntityFromResultSet(ResultSet resultSet) throws SQLException {
-        return null;
+        long id = resultSet.getLong("ID");
+        String streetAddress = resultSet.getString("STREET_ADDRESS");
+        String address2 = resultSet.getString("ADDRESS2");
+        String city = resultSet.getString("CITY");
+        String state = resultSet.getString("STATE");
+        String postcode = resultSet.getString("POSTCODE");
+        String county = resultSet.getString("COUNTY");
+        Region region = Region.valueOf(resultSet.getString("REGION").toUpperCase());
+        String country = resultSet.getString("COUNTRY");
+
+        Address address = new Address(id, streetAddress, address2, city, state, postcode, country, county, region);
+
+        return address;
     }
 
     @Override

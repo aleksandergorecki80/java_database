@@ -1,7 +1,6 @@
 package com.ag.peopledb.repository;
 
 import com.ag.peopledb.anotation.SQL;
-import com.ag.peopledb.exeption.UnableToSaveException;
 import com.ag.peopledb.model.Address;
 import com.ag.peopledb.model.CrudOperation;
 import com.ag.peopledb.model.Person;
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.joining;
 
@@ -22,7 +21,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
             INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB, SALARY, EMAIL, HOME_ADDRESS) 
             VALUES(?, ?, ?, ?, ?, ?) 
             """;
-    public static final String FIND_BY_ID_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?";
+    public static final String FIND_BY_ID_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY, HOME_ADDRESS FROM PEOPLE WHERE ID=?";
     public static final String FIND_ALL_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE";
     public static final String SELECT_COUNT_SQL = "SELECT COUNT(*) FROM PEOPLE";
     public static final String DELETE_BY_ID_SQL = "DELETE FROM PEOPLE WHERE ID=?";
@@ -56,7 +55,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     @Override
-    @SQL(value = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?", operationType = CrudOperation.FIND_BY_ID)
+    @SQL(value = FIND_BY_ID_SQL, operationType = CrudOperation.FIND_BY_ID)
     @SQL(value = FIND_ALL_SQL, operationType = CrudOperation.FIND_ALL)
     @SQL(value = SELECT_COUNT_SQL, operationType = CrudOperation.COUNT)
     @SQL(value = DELETE_BY_ID_SQL, operationType = CrudOperation.DELETE_ONE)
@@ -67,8 +66,13 @@ public class PeopleRepository extends CRUDRepository<Person> {
         String personLastName = resultSet.getString("LAST_NAME");
         ZonedDateTime personDateOfBirth = ZonedDateTime.of(resultSet.getTimestamp("DOB").toLocalDateTime(), ZoneId.of("+0"));
         BigDecimal personSalary = resultSet.getBigDecimal("SALARY");
-        System.out.println(personDateOfBirth);
-        return new Person(personId, personFirstName, personLastName, personDateOfBirth, personSalary);
+
+        long homeAddressId = resultSet.getLong("HOME_ADDRESS");
+        Optional<Address> homeAddress = addressRepository.findById(homeAddressId);
+
+        Person person = new Person(personId, personFirstName, personLastName, personDateOfBirth, personSalary);
+        person.setHomeAddress(homeAddress.orElse(null));
+        return person;
     }
 
     @Override

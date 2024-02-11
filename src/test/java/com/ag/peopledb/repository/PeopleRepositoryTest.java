@@ -72,15 +72,30 @@ public class PeopleRepositoryTest {
     }
 
     @Test
+    public void canFindPersonByIdWithAddress() throws SQLException {
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
+
+        john.setHomeAddress(address);
+        Person savedPerson = repo.save(john);
+
+        Person foundPerson = repo.findById(savedPerson.getId()).get();
+
+        assertThat(foundPerson.getHomeAddress().get().state()).isEqualTo("WA");
+
+//        connection.commit();
+    }
+
+    @Test
     public void canFindPersonById(){
         Person savedPerson = repo.save(new Person("test", "ofSaving", ZonedDateTime.now()));
-        Person foundPerson = repo.findPersonById(savedPerson.getId()).get();
+        Person foundPerson = repo.findById(savedPerson.getId()).get();
         assertThat(foundPerson).isEqualTo(savedPerson);
     }
 
     @Test
     public void testPersonIdNotFound(){
-        Optional<Person> personById = repo.findPersonById(-1L);
+        Optional<Person> personById = repo.findById(-1L);
         assertThat(personById).isEmpty();
     }
 
@@ -121,12 +136,12 @@ public class PeopleRepositoryTest {
         String salary = "74587.21";
 
         Person savedPerson = repo.save(new Person("John", "Doe", ZonedDateTime.now()));
-        Person foundPerson = repo.findPersonById(savedPerson.getId()).get();
+        Person foundPerson = repo.findById(savedPerson.getId()).get();
 
         savedPerson.setSalary(new BigDecimal(salary));
         repo.update(savedPerson);
 
-        Person updatedPerson = repo.findPersonById(savedPerson.getId()).get();
+        Person updatedPerson = repo.findById(savedPerson.getId()).get();
 
 //        assertThat(foundPerson.getSalary()).isEqualTo("0");
 //        assertThat(updatedPerson.getSalary()).isEqualTo(salary);
