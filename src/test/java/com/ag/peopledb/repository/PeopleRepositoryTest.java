@@ -66,7 +66,7 @@ public class PeopleRepositoryTest {
 
         john.setHomeAddress(address);
         Person savedPerson = repo.save(john);
-        assertThat(savedPerson.getId()).isGreaterThan(0);
+        assertThat(savedPerson.getHomeAddress().get().id()).isGreaterThan(0);
 
 //        connection.commit();
     }

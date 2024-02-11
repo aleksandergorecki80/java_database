@@ -5,6 +5,7 @@ import com.ag.peopledb.anotation.Id;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Person {
     @Id
@@ -15,7 +16,7 @@ public class Person {
     private  ZonedDateTime dob;
     private BigDecimal salary = new BigDecimal("0");
     private String email;
-    private Address homeAddress;
+    private Optional<Address> homeAddress = Optional.empty();
 
     public Person(String firstName, String lastName, ZonedDateTime dob) {
         this.firstName = firstName;
@@ -96,10 +97,11 @@ public class Person {
     }
 
     public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+
+        this.homeAddress = Optional.ofNullable(homeAddress);
     }
 
-    public com.ag.peopledb.model.Address getHomeAddress() {
+    public Optional<Address> getHomeAddress() {
         return homeAddress;
     }
 }
