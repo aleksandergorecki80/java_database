@@ -4,6 +4,7 @@ import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.model.Address;
 import com.ag.peopledb.model.CrudOperation;
 import com.ag.peopledb.model.Person;
+import com.ag.peopledb.model.Region;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -21,7 +22,14 @@ public class PeopleRepository extends CRUDRepository<Person> {
             INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB, SALARY, EMAIL, HOME_ADDRESS) 
             VALUES(?, ?, ?, ?, ?, ?) 
             """;
-    public static final String FIND_BY_ID_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY, HOME_ADDRESS FROM PEOPLE WHERE ID=?";
+    public static final String FIND_BY_ID_SQL = """
+            SELECT 
+            P.ID, P.FIRST_NAME, P.LAST_NAME, P.DOB, P.SALARY, P.HOME_ADDRESS,
+            A.ID, A.STREET_ADDRESS, A.ADDRESS2, A.CITY, A.STATE, A.POSTCODE, A.COUNTY, A.REGION, A.COUNTRY 
+            FROM PEOPLE AS P
+            LEFT OUTER JOIN ADDRESSES AS A ON P.HOME_ADDRESS = A.ID
+            WHERE P.ID=?
+            """;
     public static final String FIND_ALL_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE";
     public static final String SELECT_COUNT_SQL = "SELECT COUNT(*) FROM PEOPLE";
     public static final String DELETE_BY_ID_SQL = "DELETE FROM PEOPLE WHERE ID=?";
@@ -67,12 +75,28 @@ public class PeopleRepository extends CRUDRepository<Person> {
         ZonedDateTime personDateOfBirth = ZonedDateTime.of(resultSet.getTimestamp("DOB").toLocalDateTime(), ZoneId.of("+0"));
         BigDecimal personSalary = resultSet.getBigDecimal("SALARY");
 
-        long homeAddressId = resultSet.getLong("HOME_ADDRESS");
-        Optional<Address> homeAddress = addressRepository.findById(homeAddressId);
+//        long homeAddressId = resultSet.getLong("HOME_ADDRESS");
+
+        Address address = extractAddress(resultSet);
+
 
         Person person = new Person(personId, personFirstName, personLastName, personDateOfBirth, personSalary);
-        person.setHomeAddress(homeAddress.orElse(null));
+        person.setHomeAddress(address);
         return person;
+    }
+
+    private Address extractAddress(ResultSet resultSet) throws SQLException {
+        long addressId = resultSet.getLong("ID");
+        String streetAddress = resultSet.getString("STREET_ADDRESS");
+        String address2 = resultSet.getString("ADDRESS2");
+        String city = resultSet.getString("CITY");
+        String state = resultSet.getString("STATE");
+        String postcode = resultSet.getString("POSTCODE");
+        String county = resultSet.getString("COUNTY");
+        Region region = Region.valueOf(resultSet.getString("REGION").toUpperCase());
+        String country = resultSet.getString("COUNTRY");
+        Address address = new Address(addressId, streetAddress, address2, city, state, postcode, country, county, region);
+        return address;
     }
 
     @Override

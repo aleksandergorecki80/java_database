@@ -1,34 +1,4 @@
-sPerson{id=5000504, firstName='test', lastName='ofSaving', dob=2024-02-11T21:25:58.479839400+01:00[Europe/Warsaw]}
-Records affected: 1
-1 - Deleted entity
-¡Address[id=16, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-Records affected: 1
-\Person{id=5000505, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-pPerson{id=5000506, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:09.375543+01:00[Europe/Warsaw]}
-Records affected: 1
-XPerson{id=5000507, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-VPerson{id=5000508, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
-Records affected: 1
-nPerson{id=5000509, firstName='John', lastName='Doe', dob=2024-02-11T21:26:09.432507200+01:00[Europe/Warsaw]}
-Records affected: 1
-nPerson{id=5000510, firstName='John', lastName='Doe', dob=2024-02-11T21:26:09.466593300+01:00[Europe/Warsaw]}
-Records affected: 1
-oPerson{id=5000511, firstName='Jan', lastName='Nowak', dob=2024-02-11T21:26:09.468807400+01:00[Europe/Warsaw]}
-Records affected: 1
-2 === deletedRecordsCount
-	¡Address[id=17, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-	Records affected: 1
-	\Person{id=5000512, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-	Records affected: 1
-
-sPerson{id=5000513, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:20.475475500+01:00[Europe/Warsaw]}
-
-Records affected: 1
-
-sPerson{id=5000514, firstName='test', lastName='ofSaving', dob=2024-02-11T21:26:20.477054500+01:00[Europe/Warsaw]}
-
-Records affected: 1
-XPerson{id=5000515, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
+¡Address[id=20, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
+Records affected: 1
+\Person{id=5000528, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
+Records affected: 1
