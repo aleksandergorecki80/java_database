@@ -38,7 +38,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     @Override
     @SQL(value = SAVE_PERSON_SQL, operationType = CrudOperation.SAVE)
     void mapForSave(Person entity, PreparedStatement preparedStatement) throws SQLException {
-        Address savedAddress = addressRepository.save(entity.getHomeAddress());
+        Address savedAddress = null;
 
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
@@ -46,7 +46,13 @@ public class PeopleRepository extends CRUDRepository<Person> {
         preparedStatement.setBigDecimal(4, entity.getSalary());
         preparedStatement.setString(5, entity.getEmail());
 
-        preparedStatement.setLong(6, savedAddress.id());
+        if (entity.getHomeAddress() != null) {
+            savedAddress = addressRepository.save(entity.getHomeAddress());
+            preparedStatement.setLong(6, savedAddress.id());
+        } else {
+            preparedStatement.setObject(6, null);
+        }
+
     }
 
     @Override

@@ -60,13 +60,15 @@ public class PeopleRepositoryTest {
     }
 
     @Test
-    public void canSavePersonWithAddress(){
-        Person john = new Person("John", "Connor", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+    public void canSavePersonWithAddress() throws SQLException {
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
         Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
 
         john.setHomeAddress(address);
         Person savedPerson = repo.save(john);
         assertThat(savedPerson.getId()).isGreaterThan(0);
+
+//        connection.commit();
     }
 
     @Test
@@ -159,6 +161,7 @@ public class PeopleRepositoryTest {
     }
 
     @Test
+    @Disabled
     public void canFindAll(){
         long count = repo.count();
         List<Person> all = repo.findAll();

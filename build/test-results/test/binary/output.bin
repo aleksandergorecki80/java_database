@@ -1,4 +1,31 @@
- Address[id=4, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-Records affected: 1
-XPerson{id=5000472, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
+sPerson{id=5000479, firstName='test', lastName='ofSaving', dob=2024-02-11T13:34:59.636426500+01:00[Europe/Warsaw]}
+Records affected: 1
+1 - Deleted entity
+pPerson{id=5000480, firstName='test', lastName='ofSaving', dob=2024-02-11T13:35:11.913461+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-02-11T12:35:11.913461Z
+XPerson{id=5000481, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+Records affected: 1
+VPerson{id=5000482, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
+Records affected: 1
+nPerson{id=5000483, firstName='John', lastName='Doe', dob=2024-02-11T13:35:12.034990600+01:00[Europe/Warsaw]}
+Records affected: 1
+2024-02-11T12:35:12.034991Z
+2024-02-11T12:35:12.034991Z
+nPerson{id=5000484, firstName='John', lastName='Doe', dob=2024-02-11T13:35:12.092486400+01:00[Europe/Warsaw]}
+Records affected: 1
+lPerson{id=5000485, firstName='Jan', lastName='Nowak', dob=2024-02-11T13:35:12.094483+01:00[Europe/Warsaw]}
+Records affected: 1
+2 === deletedRecordsCount
+¡Address[id=11, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
+Records affected: 1
+\Person{id=5000486, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
+Records affected: 1
+	sPerson{id=5000487, firstName='test', lastName='ofSaving', dob=2024-02-11T13:35:22.401348200+01:00[Europe/Warsaw]}
+	Records affected: 1
+	pPerson{id=5000488, firstName='test', lastName='ofSaving', dob=2024-02-11T13:35:22.403349+01:00[Europe/Warsaw]}
+	Records affected: 1
+
+XPerson{id=5000489, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
+
+Records affected: 1
