@@ -1,8 +1,11 @@
 package com.ag.peopledb.repository;
 
+import com.ag.peopledb.model.Address;
 import com.ag.peopledb.model.Person;
+import com.ag.peopledb.model.Region;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -54,6 +57,16 @@ public class PeopleRepositoryTest {
         Person savedPerson1 = repo.save(john);
         Person savedPerson2 = repo.save(bob);
         assertThat(savedPerson1.getId()).isNotEqualTo(savedPerson2.getId());
+    }
+
+    @Test
+    public void canSavePersonWithAddress(){
+        Person john = new Person("John", "Connor", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
+
+        john.setHomeAddress(address);
+        Person savedPerson = repo.save(john);
+        assertThat(savedPerson.getId()).isGreaterThan(0);
     }
 
     @Test
@@ -118,7 +131,9 @@ public class PeopleRepositoryTest {
         assertThat(updatedPerson.getSalary()).isNotEqualTo(foundPerson.getSalary());
     }
 
-    @Test public void loadData() throws IOException, SQLException {
+    @Test
+    @Disabled
+    public void loadData() throws IOException, SQLException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()
@@ -127,8 +142,8 @@ public class PeopleRepositoryTest {
 
         Files.lines(Path.of("C:/Users/justy/Desktop/JAVA/UDEMY__Java_Foundations/Hr5m.csv"))
                 .skip(1)
-                .limit(5)
-                .map(l -> l.split(","))
+                .limit(1)
+                .map(l -> l.split( ","))
                 .map(a -> {
                     LocalDate dob = LocalDate.parse(a[10], dateFormatter);
                     LocalTime tob = LocalTime.parse(a[11], timeFormatter);

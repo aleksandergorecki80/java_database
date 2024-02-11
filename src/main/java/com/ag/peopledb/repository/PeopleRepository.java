@@ -2,6 +2,7 @@ package com.ag.peopledb.repository;
 
 import com.ag.peopledb.anotation.SQL;
 import com.ag.peopledb.exeption.UnableToSaveException;
+import com.ag.peopledb.model.Address;
 import com.ag.peopledb.model.CrudOperation;
 import com.ag.peopledb.model.Person;
 
@@ -14,9 +15,12 @@ import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 public class PeopleRepository extends CRUDRepository<Person> {
+
+    private AddressRepository addressRepository = null;
+
     public static final String SAVE_PERSON_SQL = """
-            INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB, SALARY, EMAIL) 
-            VALUES(?, ?, ?, ?, ?) 
+            INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, DOB, SALARY, EMAIL, HOME_ADDRESS) 
+            VALUES(?, ?, ?, ?, ?, ?) 
             """;
     public static final String FIND_BY_ID_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE WHERE ID=?";
     public static final String FIND_ALL_SQL = "SELECT ID, FIRST_NAME, LAST_NAME, DOB, SALARY FROM PEOPLE";
@@ -26,17 +30,23 @@ public class PeopleRepository extends CRUDRepository<Person> {
     public static final String UPDATE_SQL = "UPDATE PEOPLE SET FIRST_NAME=?, LAST_NAME=?, DOB=?, SALARY=? WHERE ID=?";
 
     public PeopleRepository(Connection connection) {
+
         super(connection);
+        addressRepository = new AddressRepository(connection);
     }
 
     @Override
     @SQL(value = SAVE_PERSON_SQL, operationType = CrudOperation.SAVE)
     void mapForSave(Person entity, PreparedStatement preparedStatement) throws SQLException {
+        Address savedAddress = addressRepository.save(entity.getHomeAddress());
+
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
         preparedStatement.setTimestamp(3, convertDateOfBirthToTimestamp(entity.getDob()));
         preparedStatement.setBigDecimal(4, entity.getSalary());
         preparedStatement.setString(5, entity.getEmail());
+
+        preparedStatement.setLong(6, savedAddress.id());
     }
 
     @Override
