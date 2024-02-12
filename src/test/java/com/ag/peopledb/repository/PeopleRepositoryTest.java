@@ -31,7 +31,7 @@ public class PeopleRepositoryTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:h2:C:/Users/justy/Desktop/JAVA/DB/peopledb");
+        connection = DriverManager.getConnection("jdbc:h2:C:/Users/justy/Desktop/JAVA/DB/peopledb;TRACE_LEVEL_SYSTEM_OUT=0");
         connection.setAutoCommit(false);
         repo = new PeopleRepository(connection);
     }
@@ -89,7 +89,7 @@ public class PeopleRepositoryTest {
     @Test
     public void canFindPersonById(){
         Person savedPerson = repo.save(new Person("test", "ofSaving", ZonedDateTime.now()));
-        Person foundPerson = repo.findById(savedPerson.getId()).get();
+            Person foundPerson = repo.findById(savedPerson.getId()).get();
         assertThat(foundPerson).isEqualTo(savedPerson);
     }
 

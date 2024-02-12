@@ -25,7 +25,7 @@ public class PeopleRepository extends CRUDRepository<Person> {
     public static final String FIND_BY_ID_SQL = """
             SELECT 
             P.ID, P.FIRST_NAME, P.LAST_NAME, P.DOB, P.SALARY, P.HOME_ADDRESS,
-            A.ID, A.STREET_ADDRESS, A.ADDRESS2, A.CITY, A.STATE, A.POSTCODE, A.COUNTY, A.REGION, A.COUNTRY 
+            A.ID AS A_ID, A.STREET_ADDRESS, A.ADDRESS2, A.CITY, A.STATE, A.POSTCODE, A.COUNTY, A.REGION, A.COUNTRY 
             FROM PEOPLE AS P
             LEFT OUTER JOIN ADDRESSES AS A ON P.HOME_ADDRESS = A.ID
             WHERE P.ID=?
@@ -86,7 +86,10 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     private Address extractAddress(ResultSet resultSet) throws SQLException {
-        long addressId = resultSet.getLong("ID");
+        if(resultSet.getObject("A_ID") == null) return null;
+
+        long addressId = resultSet.getLong("A_ID");
+
         String streetAddress = resultSet.getString("STREET_ADDRESS");
         String address2 = resultSet.getString("ADDRESS2");
         String city = resultSet.getString("CITY");
