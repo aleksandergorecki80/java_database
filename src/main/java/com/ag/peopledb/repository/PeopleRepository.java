@@ -86,9 +86,12 @@ public class PeopleRepository extends CRUDRepository<Person> {
     }
 
     private Address extractAddress(ResultSet resultSet) throws SQLException {
-        if(resultSet.getObject("A_ID") == null) return null;
+        Long addressId = getValueByAlias("A_ID", resultSet, Long.class);
 
-        long addressId = resultSet.getLong("A_ID");
+        if(addressId == null) return null;
+
+//        long addressId = resultSet.getLong("A_ID");
+//        String streetAddress2 = getValueByAlias("STREET_ADDRESS", resultSet, String.class);
 
         String streetAddress = resultSet.getString("STREET_ADDRESS");
         String address2 = resultSet.getString("ADDRESS2");
@@ -100,6 +103,16 @@ public class PeopleRepository extends CRUDRepository<Person> {
         String country = resultSet.getString("COUNTRY");
         Address address = new Address(addressId, streetAddress, address2, city, state, postcode, country, county, region);
         return address;
+    }
+
+    private <T> T getValueByAlias(String alias, ResultSet resultSet, Class<T> clazz) throws SQLException {
+        int columnCount = resultSet.getMetaData().getColumnCount();
+        for(int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            if(alias.equals(resultSet.getMetaData().getColumnLabel(columnIndex))){
+             return (T) resultSet.getObject(columnIndex);
+            };
+        }
+        throw new SQLException(String.format("Column not found for alias: '%s'", alias));
     }
 
     @Override

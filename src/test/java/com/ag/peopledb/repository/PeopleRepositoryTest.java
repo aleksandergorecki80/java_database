@@ -60,13 +60,26 @@ public class PeopleRepositoryTest {
     }
 
     @Test
-    public void canSavePersonWithAddress() throws SQLException {
+    public void canSavePersonWithHomeAddress() throws SQLException {
         Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
         Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
 
         john.setHomeAddress(address);
         Person savedPerson = repo.save(john);
         assertThat(savedPerson.getHomeAddress().get().id()).isGreaterThan(0);
+
+//        connection.commit();
+    }
+
+
+    @Test
+    public void canSavePersonWithBusinessAddress() throws SQLException {
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
+
+        john.setBusinessAddress(address);
+        Person savedPerson = repo.save(john);
+        assertThat(savedPerson.getBusinessAddress().get().id()).isGreaterThan(0);
 
 //        connection.commit();
     }
