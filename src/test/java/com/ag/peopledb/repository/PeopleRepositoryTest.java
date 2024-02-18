@@ -85,7 +85,7 @@ public class PeopleRepositoryTest {
     }
 
     @Test
-    public void canFindPersonByIdWithAddress() throws SQLException {
+    public void canFindPersonByIdWithHomeAddress() throws SQLException {
         Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
         Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
 
@@ -95,6 +95,21 @@ public class PeopleRepositoryTest {
         Person foundPerson = repo.findById(savedPerson.getId()).get();
 
         assertThat(foundPerson.getHomeAddress().get().state()).isEqualTo("WA");
+
+//        connection.commit();
+    }
+
+    @Test
+    public void canFindPersonByIdWithBusinessAddress() throws SQLException {
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        Address address = new Address(null,"123 Bale st", "Apt 1a", "Wala Wala", "WA", "90210", "United States", "Fulton country", Region.WEST);
+
+        john.setBusinessAddress(address);
+        Person savedPerson = repo.save(john);
+
+        Person foundPerson = repo.findById(savedPerson.getId()).get();
+
+        assertThat(foundPerson.getBusinessAddress().get().state()).isEqualTo("WA");
 
 //        connection.commit();
     }
