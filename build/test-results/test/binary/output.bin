@@ -1,40 +1,2 @@
-¡Address[id=44, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
+\Person{id=5000636, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
-\Person{id=5000622, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-¡Address[id=45, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-Records affected: 1
-\Person{id=5000623, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-sPerson{id=5000624, firstName='test', lastName='ofSaving', dob=2024-02-18T23:59:12.298789500+01:00[Europe/Warsaw]}
-Records affected: 1
-1 - Deleted entity
-¡Address[id=46, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-Records affected: 1
-\Person{id=5000625, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-pPerson{id=5000626, firstName='test', lastName='ofSaving', dob=2024-02-18T23:59:27.674424+01:00[Europe/Warsaw]}
-Records affected: 1
-¡Address[id=47, streetAddress=123 Bale st, address2=Apt 1a, city=Wala Wala, state=WA, postcode=90210, country=United States, county=Fulton country, region=WEST]
-Records affected: 1
-\Person{id=5000627, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1
-	XPerson{id=5000628, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
-	Records affected: 1
-	VPerson{id=5000629, firstName='Bob', lastName='Smith', dob=1985-05-04T01:05:10+04:00}
-	Records affected: 1
-
-nPerson{id=5000630, firstName='John', lastName='Doe', dob=2024-02-18T23:59:27.831348400+01:00[Europe/Warsaw]}
-
-Records affected: 1
-nPerson{id=5000631, firstName='John', lastName='Doe', dob=2024-02-18T23:59:27.919131500+01:00[Europe/Warsaw]}
-Records affected: 1
-oPerson{id=5000632, firstName='Jan', lastName='Nowak', dob=2024-02-18T23:59:27.924776500+01:00[Europe/Warsaw]}
-Records affected: 1
-2 === deletedRecordsCount
-sPerson{id=5000633, firstName='test', lastName='ofSaving', dob=2024-02-18T23:59:42.224973200+01:00[Europe/Warsaw]}
-Records affected: 1
-sPerson{id=5000634, firstName='test', lastName='ofSaving', dob=2024-02-18T23:59:42.225973300+01:00[Europe/Warsaw]}
-Records affected: 1
-XPerson{id=5000635, firstName='John', lastName='Connor', dob=1980-11-01T21:05:10-07:00}
-Records affected: 1

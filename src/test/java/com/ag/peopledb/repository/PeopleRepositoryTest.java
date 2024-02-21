@@ -115,6 +115,21 @@ public class PeopleRepositoryTest {
     }
 
     @Test
+    public void canSavePersonWithChildren(){
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        john.addChild(new Person("Zenon", "Pawlak", ZonedDateTime.of(2001, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+        john.addChild(new Person("Kazimierz", "Pawlak", ZonedDateTime.of(2005, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+        john.addChild(new Person("Leon", "Pawlak", ZonedDateTime.of(2003, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+
+        Person savedPerson = repo.save(john);
+
+        savedPerson.getChildren().stream()
+                        .map(Person::getId)
+                        .forEach(id -> assertThat(id).isGreaterThan(0));
+
+    }
+
+    @Test
     public void canFindPersonById(){
         Person savedPerson = repo.save(new Person("test", "ofSaving", ZonedDateTime.now()));
             Person foundPerson = repo.findById(savedPerson.getId()).get();

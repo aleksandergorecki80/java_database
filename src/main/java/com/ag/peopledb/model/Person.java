@@ -4,8 +4,10 @@ import com.ag.peopledb.anotation.Id;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public class Person {
     @Id
@@ -18,6 +20,8 @@ public class Person {
     private String email;
     private Optional<Address> homeAddress = Optional.empty();
     private Optional<Address> businessAddress = Optional.empty();
+    private Set<Person> children = new HashSet<>();
+    private Optional<Person> parent = Optional.empty();
 
     public Person(String firstName, String lastName, ZonedDateTime dob) {
         this.firstName = firstName;
@@ -112,5 +116,22 @@ public class Person {
 
     public Optional<Address> getBusinessAddress() {
         return businessAddress;
+    }
+
+    public void addChild(Person child) {
+        children.add(child);
+        child.setParent(this);
+    }
+
+    public void setParent(Person parent) {
+        this.parent = Optional.ofNullable(parent);
+    }
+
+    public Optional<Person> getParent() {
+        return parent;
+    }
+
+    public Set<Person> getChildren() {
+        return children;
     }
 }
