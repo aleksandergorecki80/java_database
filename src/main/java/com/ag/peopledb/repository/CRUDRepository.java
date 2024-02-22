@@ -52,6 +52,7 @@ abstract class CRUDRepository<T> {
             while (generatedKeys.next()){
                 long id = generatedKeys.getLong(1);
                 setIdByAnnotation(id, entity);
+                postSave(entity, id);
                 System.out.println(entity);
             }
             System.out.printf("Records affected: %d%n", update );
@@ -212,6 +213,10 @@ abstract class CRUDRepository<T> {
     protected String getUpdateSQL(){
         return "";
     };
+
+    protected void postSave(T entity, long id) {
+
+    }
 
 
 

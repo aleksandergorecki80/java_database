@@ -1,2 +1,8 @@
-\Person{id=5000636, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
+]Person{id=5000638, firstName='Kazimierz', lastName='Pawlak', dob=2005-07-11T21:05:10-07:00}
+Records affected: 1
+YPerson{id=5000639, firstName='Zenon', lastName='Pawlak', dob=2001-07-11T21:05:10-07:00}
+Records affected: 1
+XPerson{id=5000640, firstName='Leon', lastName='Pawlak', dob=2003-07-11T21:05:10-07:00}
+Records affected: 1
+\Person{id=5000637, firstName='Waldemar', lastName='Pawlak', dob=1980-11-01T21:05:10-07:00}
 Records affected: 1
