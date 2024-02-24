@@ -21,7 +21,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PeopleRepositoryTest {
@@ -115,7 +117,7 @@ public class PeopleRepositoryTest {
     }
 
     @Test
-    public void canSavePersonWithChildren(){
+    public void canSavePersonWithChildren() throws SQLException {
         Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
         john.addChild(new Person("Zenon", "Pawlak", ZonedDateTime.of(2001, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
         john.addChild(new Person("Kazimierz", "Pawlak", ZonedDateTime.of(2005, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
@@ -127,6 +129,7 @@ public class PeopleRepositoryTest {
                         .map(Person::getId)
                         .forEach(id -> assertThat(id).isGreaterThan(0));
 
+        connection.commit();
     }
 
     @Test
@@ -134,6 +137,20 @@ public class PeopleRepositoryTest {
         Person savedPerson = repo.save(new Person("test", "ofSaving", ZonedDateTime.now()));
             Person foundPerson = repo.findById(savedPerson.getId()).get();
         assertThat(foundPerson).isEqualTo(savedPerson);
+    }
+
+    @Test
+    public void canFindPersonByIdWithChildren(){
+        Person john = new Person("Waldemar", "Pawlak", ZonedDateTime.of(1980, 11, 01, 21, 05, 10, 0, ZoneId.of("-7")));
+        john.addChild(new Person("Zenon", "Pawlak", ZonedDateTime.of(2001, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+        john.addChild(new Person("Kazimierz", "Pawlak", ZonedDateTime.of(2005, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+        john.addChild(new Person("Leon", "Pawlak", ZonedDateTime.of(2003, 07, 11, 21, 05, 10, 0, ZoneId.of("-7"))));
+
+        Person savedPerson = repo.save(john);
+
+        Person foundPerson = repo.findById(savedPerson.getId()).get();
+        assertThat(foundPerson.getChildren().stream().map(Person::getFirstName).collect(toSet()))
+                .contains("Waldemar", "Zenon", "Kazimierz", "Leon");
     }
 
     @Test
